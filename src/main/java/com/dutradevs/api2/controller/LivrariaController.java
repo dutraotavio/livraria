@@ -24,7 +24,7 @@ public class LivrariaController {
 
     @GetMapping
     public Page<DadosListagemLivros> listar(@PageableDefault(size = 10, sort = "categoria") Pageable paginacao) {
-        return repository.findAll(paginacao).map(DadosListagemLivros::new);
+        return repository.findAllByDisponivelTrue(paginacao).map(DadosListagemLivros::new);
     }
 
     @PutMapping
@@ -32,5 +32,12 @@ public class LivrariaController {
     public void atualizar(@RequestBody @Valid DadosAtualizacaoLivros dados) {
         var livros = repository.getReferenceById(dados.id());
         livros.atualizarInformacoes(dados);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id) {
+        var livros = repository.getReferenceById(id);
+        livros.excluir();
     }
 }

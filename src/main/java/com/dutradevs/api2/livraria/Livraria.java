@@ -24,6 +24,7 @@ public class Livraria {
     private String descricao;
     @Enumerated(value = EnumType.STRING)
     private Categoria categoria;
+    private boolean disponivel;
 
     public Livraria(DadosCadastroLivros dados) {
         this.titulo = dados.titulo();
@@ -32,6 +33,7 @@ public class Livraria {
         this.paginas = dados.paginas();
         this.descricao = dados.descricao();
         this.categoria = dados.categoria();
+        this.disponivel = true;
     }
 
     public void atualizarInformacoes(DadosAtualizacaoLivros dados) {
@@ -53,5 +55,9 @@ public class Livraria {
         if (dados.categoria() != null) {
             this.categoria = dados.categoria();
         }
+    }
+
+    public void excluir() {
+        this.disponivel = false;
     }
 }
