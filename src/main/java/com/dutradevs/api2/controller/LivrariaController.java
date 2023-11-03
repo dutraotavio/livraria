@@ -1,9 +1,6 @@
 package com.dutradevs.api2.controller;
 
-import com.dutradevs.api2.livraria.DadosCadastroLivros;
-import com.dutradevs.api2.livraria.DadosListagemLivros;
-import com.dutradevs.api2.livraria.Livraria;
-import com.dutradevs.api2.livraria.LivrariaRepository;
+import com.dutradevs.api2.livraria.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +25,12 @@ public class LivrariaController {
     @GetMapping
     public Page<DadosListagemLivros> listar(@PageableDefault(size = 10, sort = "categoria") Pageable paginacao) {
         return repository.findAll(paginacao).map(DadosListagemLivros::new);
+    }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoLivros dados) {
+        var livros = repository.getReferenceById(dados.id());
+        livros.atualizarInformacoes(dados);
     }
 }

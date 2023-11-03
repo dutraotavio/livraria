@@ -26,11 +26,32 @@ public class Livraria {
     private Categoria categoria;
 
     public Livraria(DadosCadastroLivros dados) {
-        this.autor = dados.autor();
         this.titulo = dados.titulo();
+        this.autor = dados.autor();
         this.editora = dados.editora();
         this.paginas = dados.paginas();
         this.descricao = dados.descricao();
         this.categoria = dados.categoria();
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoLivros dados) {
+        if (dados.titulo() != null) {
+            this.titulo = dados.titulo();
+        }
+        if (dados.autor() != null) {
+            this.autor = dados.autor();
+        }
+        if (dados.editora() != null) {
+            this.editora = dados.editora();
+        }
+        if (dados.paginas() != null) {
+            this.paginas = dados.paginas();
+        }
+        if (dados.descricao() != null) {
+            this.descricao = dados.descricao();
+        }
+        if (dados.categoria() != null) {
+            this.categoria = dados.categoria();
+        }
     }
 }
