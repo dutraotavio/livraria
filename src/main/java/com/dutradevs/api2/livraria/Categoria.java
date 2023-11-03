@@ -7,6 +7,6 @@ public enum Categoria {
     TERROR,
     INFANTIL,
     FANTASIA,
-    BIBLIAS;
+    BIBLIA;
 
 }
